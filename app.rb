@@ -12,7 +12,7 @@ module Boxes
     end
 
     get "/main" do
-      erb :main, :locals => { :variable => "I'm a noob" }
+      erb :main, :locals => { :variable => "I'm a noob...." }
     end
 
     get "/game/:game_id" do
@@ -21,8 +21,18 @@ module Boxes
         :home_team     => game[:home],
         :away_team     => game[:away],
         :time          => game[:time],
-        :square_values => game[:square_values]
+        :square_values => game[:square_values],
+        :game_id       => params[:game_id]
       }
+    end
+
+    post "/game/submit/:game_id" do
+      body = request.body.read
+      puts body.inspect
+      cells = body.split("\n")
+      # write to disk
+      Boxes::DAO::Game.save(params[:game_id], cells)
+      [200]
     end
 
   end
