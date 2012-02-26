@@ -1,0 +1,11 @@
+<div id="gameHeadline" class="headline">
+  <span>Home: <%= home_team %></span><br/>
+  <span>Away: <%= away_team %></span><br/>
+  <span>Time: <%= time %></span>
+</div>
+
+<div id="square" class="square">
+  <%= erb :_square, :layout => false, :locals => {
+    :square => square_values
+  } %>
+</div>

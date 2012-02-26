@@ -1,0 +1,17 @@
+<table border=1>
+  <% 0.upto(9) do |r| %>
+    <tr>
+      <% 0.upto(9) do |c| %>
+        <td id=<%= "r#{r}c#{c}" %>>
+          <%=
+            if square[r].nil?
+              ""
+            else
+              square[r][c] || ""
+            end
+          %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
