@@ -5,10 +5,10 @@ module Boxes
       # This is a temporray thing, use a real DB
       DATA_LOCATION=File.join(File.dirname(__FILE__), "..", "data")
 
-      def self.save(game_id, cells)
+      def self.save(game_id, cells, user)
         File.open("#{DATA_LOCATION}/#{game_id}_values", "a+") do |f|
           cells.each do |cell|
-            f.write("#{cell} NextPerson\n")
+            f.write("#{cell} #{user}\n")
           end
         end
       end

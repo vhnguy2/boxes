@@ -19,5 +19,7 @@
   <% end %>
 </table>
 
-<span id="square_submit" onclick="submitSquare('<%= game_id %>', '<%= name %>')">Save Changes</span>
+<input id="nameTxt" type="text" name="name" />
+
+<span id="square_submit" onclick="submitSquare('<%= game_id %>', document.getElementById('nameTxt').value)">Save Changes</span>
 

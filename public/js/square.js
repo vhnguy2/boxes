@@ -33,7 +33,7 @@ $(document).ready(function() {
 });
 
 // Add click listener to submit the changes made to the board
-function submitSquare(gameId) {
+function submitSquare(gameId, user) {
   var xmlhttp;
   if (window.XMLHttpRequest) {
     xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -44,7 +44,7 @@ function submitSquare(gameId) {
   xmlhttp.open("POST", "/game/submit/" + gameId, true);
   xmlhttp.setRequestHeader("Content-type", "application/text");
 
-  var selectedCellsData = "";
+  var selectedCellsData = user + "\n";
   for(var i = 0 ; i < selectedCells.length; i++) {
     selectedCellsData += selectedCells[i].charAt(1) + " " + selectedCells[i].charAt(3);
     selectedCellsData += "\n";
@@ -56,8 +56,8 @@ function submitSquare(gameId) {
     if(xmlhttp.status == 200) {
       // change selected cells to green
       for(var i = 0 ; i < selectedCells.length; i++) {
-        console.log(selectedCells[i]);
         $("#" + selectedCells[i])[0].bgColor = "green";
+        $("#" + selectedCells[i])[0].innerHTML = user;
       }
     } else {
       alert("Unable to process change: " + xmlhttp.status);

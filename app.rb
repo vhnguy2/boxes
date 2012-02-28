@@ -30,8 +30,10 @@ module Boxes
       body = request.body.read
       puts body.inspect
       cells = body.split("\n")
+      user = cells[0]
+      cells = cells[1..-1]
       # write to disk
-      Boxes::DAO::Game.save(params[:game_id], cells)
+      Boxes::DAO::Game.save(params[:game_id], cells, user)
       [200]
     end
 
